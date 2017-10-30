@@ -14,7 +14,7 @@ class LaggyServer(executr: HttpRequest => Future[HttpResponse])(implicit system:
       extractUri { uri =>
         complete {
           after((math.random * (60 - 5) + 5).toInt.seconds, system.scheduler){
-            executr(HttpRequest(uri = Uri("/api/breeds/list/all")))
+            executr(HttpRequest(uri = uri))
           }
         }
       }
